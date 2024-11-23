@@ -1,5 +1,6 @@
 import numpy as np
 import re
+from collections import Counter
 
 # Follow the tasks below to practice basic Python concepts.
 # Write your code in between the dashed lines.
@@ -106,11 +107,13 @@ print(frequency)
 # Your code here:
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
-    tokens = string.lower().split()
-    tokens = [re.sub(r'[^\w\s]', '', word) for word in tokens if word.strip(".,!'?;:")]
+    words = string.lower().split()
+    tokens = [word.strip(".,!'?;:") for word in words if word.strip(".,!'?;:")]
     freqs = {}
     for token in tokens:
         freqs[token] = freqs.get(token, 0) + 1
+
+    # Return tokens that occur >= k times
     return {token: count for token, count in freqs.items() if count >= k}
     
 # test:
