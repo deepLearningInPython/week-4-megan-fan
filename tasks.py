@@ -48,7 +48,6 @@ print(tokens)
 def tokenize(string: str) -> list:
     tokens = string.split()
     tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
-    unique_tokens = sorted(set(token for token in tokens if token))
     return unique_tokens
 
 tokenize(text)
