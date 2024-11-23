@@ -45,12 +45,10 @@ print(tokens)
 
 # Your code here:
 # -----------------------------------------------
-def tokenize(string: str) -> list:
-    tokens = string.split()
-    tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
-    return unique_tokens
-
-tokenize(text)
+tokens = string.split()  # Split string by spaces
+    tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]  # Remove punctuation and lowercase
+    tokens = [token for token in tokens if token]  # Remove any empty strings
+    return tokens
 # -----------------------------------------------
 
 
