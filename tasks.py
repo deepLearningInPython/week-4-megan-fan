@@ -78,12 +78,18 @@ def tokenize(string: str) -> list:
 
 # Your code here:
 # -----------------------------------------------
+words = text.split()
+tokens = [re.sub(r'[^\w\s]', '', word) for word in words]
+tokens = [word.lower() for word in tokens]
+
 word_frequencies = {word: tokens.count(word) for word in set(tokens)}
 
 # Expected output example: {'the': 2, 'quick': 1, ...}
 print(word_frequencies)
 
 # Modify the comprehension to include only words that appear more than once.
+frequency = {word: tokens.count(word) for word in set(tokens) if tokens.count(word) > 1}
+print(frequency)
 # -----------------------------------------------
 
 
@@ -94,7 +100,10 @@ print(word_frequencies)
 # Your code here:
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
-    tokens = tokenize(string)
+    words = string.split()
+    tokens = [re.sub(r'[^\w\s]', '', word) for word in words]
+    tokens = [word.lower() for word in tokens]
+    
     frequency = {word: tokens.count(word) for word in set(tokens) if tokens.count(word) > k}
     return frequency
 
