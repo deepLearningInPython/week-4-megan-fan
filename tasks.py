@@ -45,10 +45,10 @@ print(tokens)
 
 # Your code here:
 # -----------------------------------------------
-tokens = string.split()  # Split string by spaces
-    tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]  # Remove punctuation and lowercase
-    tokens = [token for token in tokens if token]  # Remove any empty strings
-    return tokens
+def tokenize(string: str) -> list:
+    words = string.lower().split()
+    clean_words = [word.strip(".,!'?;:") for word in words]
+    return sorted(set(w for w in clean_words if w))
 # -----------------------------------------------
 
 
@@ -97,12 +97,13 @@ print(frequency)
 # Your code here:
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
-    tokens = string.split()
-    tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
+    tokens = string.lower().split()
+    tokens = [re.sub(r'[^\w\s]', '', word) for word in tokens]
+    freqs = {}
+    for token in tokens:
+        freqs[token] = freqs.get(token, 0) + 1
+    return {token: count for token, count in freqs.items() if count >= k}
     
-    frequency = {word: tokens.count(word) for word in set(tokens) if tokens.count(word) > k}
-    return frequency
-
 # test:
 text_hist = {'the': 2, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 1, 'dog': 1}
 all(text_hist[key] == value for key, value in token_counts(text).items())
