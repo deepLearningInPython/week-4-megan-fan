@@ -1,4 +1,5 @@
 import numpy as np
+import re
 
 # Follow the tasks below to practice basic Python concepts.
 # Write your code in between the dashed lines.
@@ -46,9 +47,17 @@ print(tokens)
 # Your code here:
 # -----------------------------------------------
 def tokenize(string: str) -> list:
-    words = string.lower().split()
-    clean_words = [word.strip(".,!'?;:") for word in words]
-    return sorted(set(w for w in clean_words if w))
+     """
+    Tokenizes a string, removing punctuation and converting to lowercase.
+    """
+    # Split the string into words, remove punctuation, and convert to lowercase
+    tokens = string.split()
+    tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
+    
+    # Filter out any empty strings
+    tokens = [token for token in tokens if token]
+    
+    return tokens
 # -----------------------------------------------
 
 
@@ -98,7 +107,7 @@ print(frequency)
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
     tokens = string.lower().split()
-    tokens = [re.sub(r'[^\w\s]', '', word) for word in tokens]
+    tokens = [re.sub(r'[^\w\s]', '', word) for word in tokens if word.strip(".,!'?;:")]
     freqs = {}
     for token in tokens:
         freqs[token] = freqs.get(token, 0) + 1
