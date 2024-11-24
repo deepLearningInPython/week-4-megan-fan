@@ -51,14 +51,9 @@ def tokenize(string: str) -> list:
      """
     Tokenizes a string, removing punctuation and converting to lowercase.
     """
-    # Split the string into words, remove punctuation, and convert to lowercase
-    tokens = string.split()
-    tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
-    
-    # Filter out any empty strings
-    tokens = [token for token in tokens if token]
-    
-    return tokens
+    words = string.lower().split()
+    clean_words = [word.strip(".,!'?;:") for word in words]
+    return sorted(set(w for w in clean_words if w))
 # -----------------------------------------------
 
 
