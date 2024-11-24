@@ -211,7 +211,7 @@ def tokenize_and_encode(documents: list) -> tuple:
      encoded_doc = []
      for document in documents:
           tokens = document.lower().split()
-          tokens = [word.strip(".,!'?;:") for word in words]
+          tokens = [word.strip(".,!'?;:") for word in tokens]
           token_id = [token_to_id[token] for token in tokens for token in token_to_id]
           encoded_doc.append(token_id)
      
