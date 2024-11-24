@@ -102,14 +102,14 @@ print(frequency)
 # Your code here:
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
-    words = string.lower().split()
-    tokens = [word.strip(".,!'?;:") for word in words if word.strip(".,!'?;:")]
-    freqs = {}
-    for token in tokens:
-        freqs[token] = freqs.get(token, 0) + 1
-
-    # Return tokens that occur >= k times
-    return {token: count for token, count in freqs.items() if count >= k}
+     words = string.lower().split()
+     tokens = [word.strip(".,!'?;:") for word in words if word.strip(".,!'?;:")]
+     freqs = {}
+     for token in tokens:
+          freqs[token] = freqs.get(token, 0) + 1
+          
+     # Return tokens that occur >= k times
+     return {token: count for token, count in freqs.items() if count >= k}
     
 # test:
 text_hist = {'the': 2, 'quick': 1, 'brown': 1, 'fox': 1, 'jumps': 1, 'over': 1, 'lazy': 1, 'dog': 1}
@@ -174,18 +174,18 @@ assert all(id_to_token[token_to_id[key]]==key for key in token_to_id) and all(to
 # Your code here:
 # -----------------------------------------------
 def make_vocabulary_map(documents: list) -> tuple:
-    # Hint: use your tokenize function
-    all_tokens = []
-    for document in documents:
-        tokens = tokenize(document)
-        all_tokens.extend(tokens)
-
-    unique_tokens = sorted(set(all_tokens))
-    
-    token2int = {token: idx for idx, token in enumerate(unique_tokens)}
-    int2token = {idx: token for token, idx in token2int.items()}
-
-    return token2int, int2token
+     # Hint: use your tokenize function
+     all_tokens = []
+     for document in documents:
+          tokens = tokenize(document)
+          all_tokens.extend(tokens)
+          
+     unique_tokens = sorted(set(all_tokens))
+     
+     token2int = {token: idx for idx, token in enumerate(unique_tokens)}
+     int2token = {idx: token for token, idx in token2int.items()}
+     
+     return token2int, int2token
     
 # Test
 t2i, i2t = make_vocabulary_map([text])
@@ -204,19 +204,18 @@ all(i2t[t2i[tok]] == tok for tok in t2i) # should be True
 # Your code here:
 # -----------------------------------------------
 def tokenize_and_encode(documents: list) -> tuple:
-    token_to_id, id_to_token = make_vocabulary_map(documents)  # Create mappings
-
-    encoded_sentences = []
-    for document in documents:
-        # Tokenize the document, preserving duplicates and order
-        tokens = document.split()  # Tokenize without deduplication
-        tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
-
-        # Convert tokens to IDs using token_to_id
-        token_ids = [token_to_id[token] for token in tokens if token in token_to_id]
-        encoded_sentences.append(token_ids)
-
-    return encoded_sentences, token_to_id, id_to_token
+     token_to_id, id_to_token = make_vocabulary_map(documents)  # Create mappings
+     encoded_sentences = []
+     for document in documents:
+          # Tokenize the document, preserving duplicates and order
+          tokens = document.split()  # Tokenize without deduplication
+          tokens = [re.sub(r'[^\w\s]', '', word).lower() for word in tokens]
+          
+          # Convert tokens to IDs using token_to_id
+          token_ids = [token_to_id[token] for token in tokens if token in token_to_id]
+          encoded_sentences.append(token_ids)
+     
+     return encoded_sentences, token_to_id, id_to_token
 
 # Test:
 enc, t2i, i2t = tokenize_and_encode([text, 'What a luck we had today!'])
