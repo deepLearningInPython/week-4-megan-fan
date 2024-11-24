@@ -49,11 +49,11 @@ print(tokens)
 # -----------------------------------------------
 def tokenize(string: str) -> list:
      """
-    Tokenizes a string, removing punctuation and converting to lowercase.
-    """
-    words = string.lower().split()
-    clean_words = [word.strip(".,!'?;:") for word in words]
-    return sorted(set(w for w in clean_words if w))
+     Tokenizes a string, removing punctuation and converting to lowercase.
+     """
+     words = string.lower().split()
+     clean_words = [word.strip(".,!'?;:") for word in words]
+     return sorted(set(w for w in clean_words if w))
 # -----------------------------------------------
 
 
