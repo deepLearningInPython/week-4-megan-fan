@@ -141,7 +141,7 @@ all(text_hist[key] == value for key, value in token_counts(text).items())
 # Your code here:
 # -----------------------------------------------
 tokens = tokenize(text)
-token_to_id = {token: idx for idx, token in enumerate(unique_tokens)}
+token_to_id = {token: idx for idx, token in enumerate(tokens)}
 
 # Expected output: {'dog': 0, 'quick': 1, 'fox': 2, 'the': 3, 'over': 4, 'lazy': 5, 'brown': 6, 'jumps': 7}
 print(token_to_id)
